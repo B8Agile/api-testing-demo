@@ -2,7 +2,7 @@
 Feature: Testing Companies End Points
 
 
-  Scenario: Happy Path Create Company (Company-Post EndPoint) -->POST
+  Scenario: Happy Path Create Company (Company-Post EndPoint) -->POST OLGA
     Then User validates 'BookingLLC', 'book123@gmail.com', 'bay area' and '1212121212' from end-point Post
 
      #put endpoint ID before running as expected!
