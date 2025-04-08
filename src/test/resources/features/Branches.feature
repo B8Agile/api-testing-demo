@@ -2,7 +2,7 @@
 @regression
 Feature: Testing Branches End Points
 
-  Scenario: Happy Path Creating a new Branch to the Existing Company (Branch-Post Endpoint) -->POST3
+  Scenario: Happy Path Creating a new Branch to the Existing Company (Branch-Post Endpoint) -->POST11
     Then User validates 'Chicago Branch', 'chicago@gmail.com', 'Devon Ave', '8888888888', '11' and '88' from end-point Post
 
     #change endpoint ID before running as expected!
