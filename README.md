@@ -28,6 +28,5 @@ Technologies Used:
 •	MySQL – Utilized as a relational database solution for efficient storage, management, and retrieval of inventory and order data.
 
 Contributing:
-
 Feel free to fork this repository and submit pull requests with improvements or new features. Please follow the guidelines for submitting changes.
 
