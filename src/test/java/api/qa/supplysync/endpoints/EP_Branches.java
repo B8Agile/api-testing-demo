@@ -7,10 +7,7 @@ import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
 import org.junit.Assert;
-
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class EP_Branches {
 
@@ -20,7 +17,6 @@ public class EP_Branches {
     final String authorization = "Authorization";
 
     public void createNewBranchData(String name, String email, String address, String number, String regionId, String companyId) {
-
         RestAssured.baseURI = ConfigReader.readProperty("branch_url");
         RestAssured.basePath = ConfigReader.readProperty("create_branch");
 
@@ -36,12 +32,9 @@ public class EP_Branches {
         Assert.assertEquals(deserializeResponse.getPhoneNumber(), number);
         Assert.assertEquals(deserializeResponse.getRegion().getId(), regionId);
         Assert.assertEquals(deserializeResponse.getCompany().getId(), companyId);
-
-
     }
 
     public void getBranchData(String region, String companyName, String companyEmail, String companyAddress, String companyNumber) {
-
         RestAssured.baseURI = ConfigReader.readProperty("branch_url");
         RestAssured.basePath = ConfigReader.readProperty("get_branch");
 
@@ -55,12 +48,9 @@ public class EP_Branches {
         Assert.assertEquals(deserializeResponse.getCompany().getEmail(), companyEmail);
         Assert.assertEquals(deserializeResponse.getCompany().getAddress(), companyAddress);
         Assert.assertEquals(deserializeResponse.getCompany().getPhoneNumber(), companyNumber);
-
-
     }
 
     public void updateBranchData(String name, String email, String address, String number, String regionId, String companyId) {
-
         RestAssured.baseURI = ConfigReader.readProperty("branch_url");
         RestAssured.basePath = ConfigReader.readProperty("get_branch");
 
@@ -76,12 +66,9 @@ public class EP_Branches {
         Assert.assertEquals(deserializeResponse.getPhoneNumber(), number);
         Assert.assertEquals(deserializeResponse.getRegion().getId(), regionId);
         Assert.assertEquals(deserializeResponse.getCompany().getId(), companyId);
-
-
     }
 
     public void blockBranchData(String block, String companyBlocked) {
-
         RestAssured.baseURI = ConfigReader.readProperty("branch_url");
         RestAssured.basePath = ConfigReader.readProperty("block_branch");
 
@@ -92,12 +79,9 @@ public class EP_Branches {
         PJ_Branches deserializeResponse = response.as(PJ_Branches.class);
         Assert.assertEquals(deserializeResponse.getBlock(), block);
         Assert.assertEquals(deserializeResponse.getCompany().getBlocked(), companyBlocked);
-
-
     }
 
     public void unBlockBranchData(String block, String companyBlocked) {
-
         RestAssured.baseURI = ConfigReader.readProperty("branch_url");
         RestAssured.basePath = ConfigReader.readProperty("unBlock_branch");
 
@@ -108,13 +92,10 @@ public class EP_Branches {
         PJ_Branches deserializeResponse = response.as(PJ_Branches.class);
         Assert.assertEquals(deserializeResponse.getBlock(), block);
         Assert.assertEquals(deserializeResponse.getCompany().getBlocked(), companyBlocked);
-
-
     }
 
 
     public void deleteBranchData(String name, String email, String address, String number, String regionId, String companyId) {
-
         RestAssured.baseURI = ConfigReader.readProperty("branch_url");
         RestAssured.basePath = ConfigReader.readProperty("get_branch");
 
@@ -129,44 +110,10 @@ public class EP_Branches {
         Assert.assertEquals(deserializeResponse.getPhoneNumber(), number);
         Assert.assertEquals(deserializeResponse.getRegion().getId(), regionId);
         Assert.assertEquals(deserializeResponse.getCompany().getId(), companyId);
-
-
     }
-
-    public void getAllBranchData(String name, String email, String address, String number, String regionId, String companyId) {
-
-        RestAssured.baseURI = ConfigReader.readProperty("branch_url");
-        RestAssured.basePath = ConfigReader.readProperty("get_allBranch");
-
-        Response response = RestAssured.given().header(contentType, json).header(accept, json)
-                .header(authorization, ConfigReader.readProperty("token"))
-                .when().get().then().log().body().statusCode(200).extract().response();
-
-        PJ_Branches deserializeResponse = response.as(PJ_Branches.class);
-        Assert.assertEquals(deserializeResponse.getName(), name);
-        Assert.assertEquals(deserializeResponse.getEmail(), email);
-        Assert.assertTrue(deserializeResponse.getAddress().contains(address));
-        Assert.assertEquals(deserializeResponse.getPhoneNumber(), number);
-        Assert.assertEquals(deserializeResponse.getRegion().getId(), regionId);
-        Assert.assertEquals(deserializeResponse.getCompany().getId(), companyId);
-
-
-    }
-
-    // MUST DISCUSS BEFORE STARTING VALIDATION, MANUAL HAS INTERNAL ERROR
-//    public void getDriverCount(String count){
-//
-//    }
-
-
-    // MUST DISCUSS BEFORE STARTING VALIDATION, MANUAL HAS INTERNAL ERROR
-//    public void getAllBranchCount(String count){
-//
-//    }
 
 
     public void getAllUnBlockBranchData(String block, String companyBlocked) {
-
         RestAssured.baseURI = ConfigReader.readProperty("branch_url");
         RestAssured.basePath = ConfigReader.readProperty("notBlock_branch");
 
@@ -174,14 +121,12 @@ public class EP_Branches {
                 .header(authorization, ConfigReader.readProperty("token"))
                 .when().get().then().log().body().statusCode(200).extract().response();
 
-        List<Map<String, Object>> deserializeResponse= response.as(new TypeRef<List<Map<String, Object>>>() {});
-
-        for (int i = 0; i < deserializeResponse.size(); i++) {
-            Map<String, Object> company= (Map<String, Object>) deserializeResponse.get(i).get("company");
-            Assert.assertEquals(deserializeResponse.get(i).get("block"), block);
-            Assert.assertEquals(company.get("blocked"), companyBlocked);
+        //Merged Pojo with TypeRef! to store my pojo into list of all Json objects.
+        List<PJ_Branches> deserialization = response.as(new TypeRef<List<PJ_Branches>>() {});
+        for (PJ_Branches pjBranches : deserialization) {
+            Assert.assertEquals(pjBranches.getBlock(), block);
+            Assert.assertEquals(pjBranches.getCompany().getBlocked(), companyBlocked);
         }
-
     }
 
 

@@ -74,7 +74,7 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                        <include>supplysync.runners.SupplySyncRunner</include>
+                        <include>supplysync.runners.Runner</include>
                     </includes>
                 </configuration>
             </plugin>

@@ -10,13 +10,12 @@ import org.junit.Assert;
 
 public class EP_Companies {
 
-    // I AM USING FINAL KEYWORD IN MY AUTOMATION TO make variable IMMUTABLE!
+    // I AM USING FINAL KEYWORD IN MY AUTOMATION TO make variable IMMUTABLE and REUSABLE!
     final String json = "application/json";
     final String contentType = "Content-Type";
     final String authorization = "Authorization";
 
     public void validateCreateCompaniesData(String expectedName, String expectedEmail, String expectedAddress, String expectedPhoneNumber) {
-
         RestAssured.baseURI = ConfigReader.readProperty("base_url");
         RestAssured.basePath = ConfigReader.readProperty("create_company");
 
@@ -31,7 +30,6 @@ public class EP_Companies {
         Assert.assertEquals(deserializeResponse.getEmail(), expectedEmail);
         Assert.assertEquals(deserializeResponse.getAddress(), expectedAddress);
         Assert.assertEquals(deserializeResponse.getPhoneNumber(), expectedPhoneNumber);
-
     }
 
     public void validateExistCompanyData(String expectedName, String expectedEmail, String expectedAddress, String expectedPhoneNumber) {
@@ -48,7 +46,6 @@ public class EP_Companies {
         Assert.assertEquals(deserializeResponse.getEmail(), expectedEmail);
         Assert.assertEquals(deserializeResponse.getAddress(), expectedAddress);
         Assert.assertEquals(deserializeResponse.getPhoneNumber(), expectedPhoneNumber);
-
     }
 
     public void validateUpdateCompanyData(String expectedName, String expectedEmail, String expectedAddress, String expectedPhoneNumber) {
@@ -66,7 +63,6 @@ public class EP_Companies {
         Assert.assertEquals(deserializeResponse.getEmail(), expectedEmail);
         Assert.assertEquals(deserializeResponse.getAddress(), expectedAddress);
         Assert.assertEquals(deserializeResponse.getPhoneNumber(), expectedPhoneNumber);
-
     }
 
 
@@ -112,7 +108,6 @@ public class EP_Companies {
         Assert.assertEquals(deserializeResponse.getEmail(), expectedEmail);
         Assert.assertEquals(deserializeResponse.getAddress(), expectedAddress);
         Assert.assertEquals(deserializeResponse.getPhoneNumber(), expectedPhoneNumber);
-
     }
 
 
@@ -128,7 +123,6 @@ public class EP_Companies {
 
         Assert.assertEquals(deserializeResponse.getReason(), expectedReason);
         Assert.assertEquals(deserializeResponse.getMessage(), expectedMessage);
-
     }
 
 
