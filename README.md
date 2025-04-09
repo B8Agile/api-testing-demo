@@ -20,10 +20,12 @@ Getting Started:
       •	Instructions to run the API locally for development or testing.
 
 Technologies Used:
-•	Java – For backend development.
-•	Spring Boot – Framework for building the API.
-•	MySQL – Database for storing inventory and order data.
-•	Docker – For containerizing the application.
+
+•	Java & HTML – Leveraged for backend development and crafting responsive web interfaces, ensuring a seamless user experience.
+
+•	Behavior-Driven Development (BDD) with Cucumber & Rest Assured – Implemented BDD practices for automated API testing, ensuring robust and reliable API functionality.
+
+•	MySQL – Utilized as a relational database solution for efficient storage, management, and retrieval of inventory and order data.
 
 Contributing:
 
