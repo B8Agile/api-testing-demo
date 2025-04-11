@@ -10,7 +10,6 @@ import org.junit.Assert;
 
 public class EP_Companies {
 
-    // I AM USING FINAL KEYWORD IN MY AUTOMATION TO make variable IMMUTABLE and REUSABLE!
     final String json = "application/json";
     final String contentType = "Content-Type";
     final String authorization = "Authorization";
